@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="zh-CN">
+ <head> 
+  <meta charset="utf-8"> 
+  <link rel="canonical" href="https://blog.csdn.net/u014361280/article/details/115522058"> 
+  <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
+  <meta name="renderer" content="webkit"> 
+  <meta name="force-rendering" content="webkit"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+  <meta name="report" content="{&quot;pid&quot;: &quot;blog&quot;, &quot;spm&quot;:&quot;1001.2101&quot;}"> 
+  <meta name="referrer" content="always"> 
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <link rel="alternate" media="handheld" href="#"> 
+  <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848"> 
+  <meta name="applicable-device" content="pc"> 
+  <link href="https://g.csdnimg.cn/static/logo/favicon32.ico" rel="shortcut icon" type="image/x-icon"> 
+  <title>Unity Android Studio 混合开发整理 - 附有详细操作步骤（Unity 2019.3 + 嵌入 Android Studio 4. + 应用中）_仙魁XAN的博客-CSDN博客</title>  
+  <meta name="keywords" content="Unity Android Studio 混合开发整理 - 附有详细操作步骤（Unity 2019.3 + 嵌入 Android Studio 4. + 应用中）"> 
+  <meta name="description" content="Unity Android Studio 混合开发整理 - 附有详细操作步骤（Unity 2019.3 + 嵌入 Android Studio 4. + 应用中）目录Unity Android Studio 混合开发整理 - 附有详细操作步骤（Unity 2019.3 + 嵌入 Android Studio 4. + 应用中）一、简单介绍二、案例开发环境：三、注意事项四、Unity 应用工程整体导出， 整个工程作为 Android 工程 Import Project 进 ...">  
+  <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/css/detail_enter-dbcfbb1ed8.min.css">  
+  <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/release/blogv2/dist/pc/themesSkin/skin-blackwhale/skin-blackwhale-53d3942c2f.min.css">   
+  <meta name="toolbar" content="{&quot;type&quot;:&quot;1&quot;}">    
+  <link rel="stylesheet" type="text/css" href="https://csdnimg.cn/public/sandalstrap/1.4/css/sandalstrap.min.css"> 
+  <style>.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%} .MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%} .MathJax .MJX-monospace {font-family: monospace} .MathJax .MJX-sans-serif {font-family: sans-serif} #MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none} .MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0} .MathJax:focus, body :focus .MathJax {display: inline-table} .MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important} .MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none} img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important} .MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none} .MathJax nobr {white-space: nowrap!important} .MathJax img {display: inline!important; float: none!important} .MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none} .MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden} .MathJax_Processed {display: none!important} .MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none} .MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none} .MathJax_LineBox {display: table!important} .MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0} .MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)} .MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent} #MathJax_Tooltip * {filter: none; opacity: 1; background: transparent} @font-face {font-family: MathJax_Main; src: url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.2') format('woff'), url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.2') format('opentype')} @font-face {font-family: MathJax_Main-bold; src: url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.2') format('woff'), url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.2') format('opentype')} @font-face {font-family: MathJax_Main-italic; src: url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.2') format('woff'), url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.2') format('opentype')} @font-face {font-family: MathJax_Math-italic; src: url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.2') format('woff'), url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.2') format('opentype')} @font-face {font-family: MathJax_Caligraphic; src: url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.2') format('woff'), url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.2') format('opentype')} @font-face {font-family: MathJax_Size1; src: url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.2') format('woff'), url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.2') format('opentype')} @font-face {font-family: MathJax_Size2; src: url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.2') format('woff'), url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.2') format('opentype')} @font-face {font-family: MathJax_Size3; src: url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.2') format('woff'), url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.2') format('opentype')} @font-face {font-family: MathJax_Size4; src: url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.2') format('woff'), url('https://csdnimg.cn/release/blog_mathjax/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.2') format('opentype')} .MathJax .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}</style>  
+ </head> 
+ <body class="nodata is_black_skin " style="">    
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/pc/css/blog_code-01256533b5.min.css"> 
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/chart-3456820cac.css">  
+  <div class="main_father clearfix d-flex justify-content-center mainfather-concision" style="height:100%;"> 
+   <div class="container clearfix container-concision" id="mainBox">  
+    <main style="width:100%">  
+     <div class="blog-content-box"> 
+      <div class="article-header-box"> 
+       <div class="article-header"> 
+        <div class="article-title-box"> 
+         <h1 class="title-article" id="articleContentId">Unity Android Studio 混合开发整理 - 附有详细操作步骤（Unity 2019.3 + 嵌入 Android Studio 4. + 应用中）</h1> 
+        </div> 
+        <div class="article-info-box"> 
+         <div class="article-bar-top"> 
+          <img class="article-type-img" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2Foriginal.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+          <div class="bar-content"> 
+           <img class="article-vip-img article-heard-img" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FidentityVip.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+           <span class="article-vip-text vip_article"> VIP文章</span> 
+           <a class="follow-nickName vip-name" href="https://blog.csdn.net/u014361280" target="_blank" rel="noopener">仙魁XAN</a> 
+           <img class="article-time-img article-heard-img" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnewCurrentTime2.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+           <span class="time">于&nbsp;2021-04-08 18:14:12&nbsp;发布</span> 
+           <img class="article-read-img article-heard-img" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FarticleReadEyes2.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+           <span class="read-count">908</span> 
+           <a id="blog_detail_zk_collection" class="un-collection" data-report-click="{&quot;mod&quot;:&quot;popu_823&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4232&quot;,&quot;ab&quot;:&quot;new&quot;}"> <img class="article-collect-img article-heard-img un-collect-status isdefault" style="display:inline-block" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FtobarCollect2.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> <img class="article-collect-img article-heard-img collect-status isactive" style="display:none" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FtobarCollectionActive2.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> <span class="name">收藏</span> <span class="get-collection"> 7 </span> </a> 
+          </div> 
+         </div> 
+         <div class="blog-tags-box"> 
+          <div class="tags-box artic-tag-box"> 
+           <span class="label">分类专栏：</span> 
+           <a class="tag-link" href="https://blog.csdn.net/u014361280/category_9753534.html" target="_blank" rel="noopener">Unity Android</a> 
+           <span class="label">文章标签：</span> 
+           <a data-report-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4223&quot;,&quot;strategy&quot;:&quot;unity&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;extra&quot;:&quot;{\&quot;searchword\&quot;:\&quot;unity\&quot;}&quot;}" class="tag-link" href="https://so.csdn.net/so/search/s.do?q=unity&amp;t=blog&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=" target="_blank" rel="noopener">unity</a> 
+           <a data-report-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4223&quot;,&quot;strategy&quot;:&quot;Android&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;extra&quot;:&quot;{\&quot;searchword\&quot;:\&quot;Android\&quot;}&quot;}" class="tag-link" href="https://so.csdn.net/so/search/s.do?q=Android&amp;t=blog&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=" target="_blank" rel="noopener">Android</a> 
+           <a data-report-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4223&quot;,&quot;strategy&quot;:&quot;Android studio&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;extra&quot;:&quot;{\&quot;searchword\&quot;:\&quot;Android studio\&quot;}&quot;}" class="tag-link" href="https://so.csdn.net/so/search/s.do?q=Android+studio&amp;t=blog&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=" target="_blank" rel="noopener">Android studio</a> 
+           <a data-report-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4223&quot;,&quot;strategy&quot;:&quot;混合开发&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;extra&quot;:&quot;{\&quot;searchword\&quot;:\&quot;混合开发\&quot;}&quot;}" class="tag-link" href="https://so.csdn.net/so/search/s.do?q=%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91&amp;t=blog&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=" target="_blank" rel="noopener">混合开发</a> 
+           <a data-report-click="{&quot;mod&quot;:&quot;popu_626&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4223&quot;,&quot;strategy&quot;:&quot;Unity嵌入Android&quot;,&quot;ab&quot;:&quot;new&quot;,&quot;extra&quot;:&quot;{\&quot;searchword\&quot;:\&quot;Unity嵌入Android\&quot;}&quot;}" class="tag-link" href="https://so.csdn.net/so/search/s.do?q=Unity%E5%B5%8C%E5%85%A5Android&amp;t=blog&amp;o=vip&amp;s=&amp;l=&amp;f=&amp;viparticle=" target="_blank" rel="noopener">Unity嵌入Android</a> 
+          </div> 
+         </div> 
+         <div class="slide-content-box"> 
+          <div class="article-copyright"> 
+           <div class="creativecommons">
+             版权声明：本文为博主原创文章，遵循
+            <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。 
+           </div> 
+           <div class="article-source-link">
+             本文链接：
+            <a href="https://blog.csdn.net/u014361280/article/details/115522058" target="_blank">https://blog.csdn.net/u014361280/article/details/115522058</a> 
+           </div> 
+          </div> 
+         </div> 
+         <div class="operating"> 
+          <a class="href-article-edit slide-toggle">版权</a> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+      <div id="blogHuaweiyunAdvert"></div> 
+      <article class="baidu_pl"> 
+       <div id="article_content" class="article_content clearfix"> 
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-6e43165c0a.css"> 
+        <div id="content_views" class="htmledit_views"> 
+         <p style="text-indent:0;"><img alt="" height="408" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210409145110561.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="1200"></p> 
+         <h1 id="Unity%20Android%20Studio%20%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%E6%95%B4%E7%90%86%20-%20%E9%99%84%E6%9C%89%E8%AF%A6%E7%BB%86%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4%EF%BC%88Unity%202019.3%20%2B%20%E5%B5%8C%E5%85%A5%20Android%20Studio%204.%20%2B%20%E5%BA%94%E7%94%A8%E4%B8%AD%EF%BC%89">Unity Android Studio 混合开发整理 - 附有详细操作步骤（Unity 2019.3 + 嵌入 Android Studio 4. + 应用中）</h1> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <p id="main-toc"><strong>目录</strong></p> 
+         <p id="Unity%20Android%20Studio%20%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%E6%95%B4%E7%90%86%20-%20%E9%99%84%E6%9C%89%E8%AF%A6%E7%BB%86%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4%EF%BC%88Unity%202019.3%20%2B%20%E5%B5%8C%E5%85%A5%20Android%20Studio%204.%20%2B%20%E5%BA%94%E7%94%A8%E4%B8%AD%EF%BC%89-toc" style="margin-left:0px;"><a href="#Unity%20Android%20Studio%20%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91%E6%95%B4%E7%90%86%20-%20%E9%99%84%E6%9C%89%E8%AF%A6%E7%BB%86%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4%EF%BC%88Unity%202019.3%20%2B%20%E5%B5%8C%E5%85%A5%20Android%20Studio%204.%20%2B%20%E5%BA%94%E7%94%A8%E4%B8%AD%EF%BC%89">Unity Android Studio 混合开发整理 - 附有详细操作步骤（Unity 2019.3 + 嵌入 Android Studio 4. + 应用中）</a></p> 
+         <p id="%E4%B8%80%E3%80%81%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D-toc" style="margin-left:40px;"><a href="#%E4%B8%80%E3%80%81%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D">一、简单介绍</a></p> 
+         <p id="%C2%A0%E4%BA%8C%E3%80%81%E6%A1%88%E4%BE%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%EF%BC%9A-toc" style="margin-left:40px;"><a href="#%C2%A0%E4%BA%8C%E3%80%81%E6%A1%88%E4%BE%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%EF%BC%9A">&nbsp;二、案例开发环境：</a></p> 
+         <p id="%E4%B8%89%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-toc" style="margin-left:40px;"><a href="#%E4%B8%89%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">三、注意事项</a></p> 
+         <p id="%E5%9B%9B%E3%80%81Unity%20%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B4%E4%BD%93%E5%AF%BC%E5%87%BA%EF%BC%8C%20%E6%95%B4%E4%B8%AA%E5%B7%A5%E7%A8%8B%E4%BD%9C%E4%B8%BA%20Android%20%E5%B7%A5%E7%A8%8B%20Import%20Project%20%E8%BF%9B%20Android%20studio%EF%BC%8C%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E7%94%9F%E6%88%90%20APK-toc" style="margin-left:40px;"><a href="#%E5%9B%9B%E3%80%81Unity%20%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B4%E4%BD%93%E5%AF%BC%E5%87%BA%EF%BC%8C%20%E6%95%B4%E4%B8%AA%E5%B7%A5%E7%A8%8B%E4%BD%9C%E4%B8%BA%20Android%20%E5%B7%A5%E7%A8%8B%20Import%20Project%20%E8%BF%9B%20Android%20studio%EF%BC%8C%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E7%94%9F%E6%88%90%20APK">四、Unity 应用工程整体导出， 整个工程作为 Android 工程 Import Project 进 Android studio，编译运行生成 APK</a></p> 
+         <p id="1%E3%80%81%E6%89%93%E5%BC%80%20Unity%20%EF%BC%8C%E6%B7%BB%E5%8A%A0%20Cube%20%E5%92%8C%20Button%20%E5%B8%83%E5%B1%80%E5%A6%82%E4%B8%8B-toc" style="margin-left:80px;"><a href="#1%E3%80%81%E6%89%93%E5%BC%80%20Unity%20%EF%BC%8C%E6%B7%BB%E5%8A%A0%20Cube%20%E5%92%8C%20Button%20%E5%B8%83%E5%B1%80%E5%A6%82%E4%B8%8B">1、打开 Unity ，添加 Cube 和 Button 布局如下</a></p> 
+         <p id="2%E3%80%81%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%8E%A7%E5%88%B6%20Cube%20%E6%97%8B%E8%BD%AC%E5%92%8C%E9%A2%9C%E8%89%B2%E5%8F%98%E5%8C%96-toc" style="margin-left:80px;"><a href="#2%E3%80%81%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%8E%A7%E5%88%B6%20Cube%20%E6%97%8B%E8%BD%AC%E5%92%8C%E9%A2%9C%E8%89%B2%E5%8F%98%E5%8C%96">2、编写一个脚本，用于控制 Cube 旋转和颜色变化</a></p> 
+         <p id="3%E3%80%81%E8%84%9A%E6%9C%AC%E6%8C%82%E8%BD%BD%E5%88%B0%20Cube%20%E4%B8%8A%EF%BC%8C%E5%B9%B6%E5%AF%B9%E5%BA%94%E8%B5%8B%E5%80%BC-toc" style="margin-left:80px;"><a href="#3%E3%80%81%E8%84%9A%E6%9C%AC%E6%8C%82%E8%BD%BD%E5%88%B0%20Cube%20%E4%B8%8A%EF%BC%8C%E5%B9%B6%E5%AF%B9%E5%BA%94%E8%B5%8B%E5%80%BC">3、脚本挂载到 Cube 上，并对应赋值</a></p> 
+         <p id="4%E3%80%81%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B-toc" style="margin-left:80px;"><a href="#4%E3%80%81%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B">4、运行效果如下</a></p> 
+         <p id="5%E3%80%81File%20-%20Build%20Settings%20%E8%BF%9B%E8%A1%8C%E7%9B%B8%E5%85%B3%E5%A6%82%E4%B8%8B%E8%AE%BE%E7%BD%AE%EF%BC%8C%E7%84%B6%E5%90%8E%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E7%A8%8B%E4%BA%86-toc" style="margin-left:80px;"><a href="#5%E3%80%81File%20-%20Build%20Settings%20%E8%BF%9B%E8%A1%8C%E7%9B%B8%E5%85%B3%E5%A6%82%E4%B8%8B%E8%AE%BE%E7%BD%AE%EF%BC%8C%E7%84%B6%E5%90%8E%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E7%A8%8B%E4%BA%86">5、File - Build Settings 进行相关如下设置，然后就可以导出工程了</a></p> 
+         <p id="6%E3%80%81%E6%A0%B9%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%A4%A7%E5%B0%8F%EF%BC%8C%E5%AF%BC%E5%87%BA%E6%97%B6%E9%97%B4%E4%B8%8D%E4%B8%80%E6%A0%B7%EF%BC%8C%E5%AF%BC%E5%87%BA%E5%90%8E%EF%BC%8C%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E7%B1%BB%E4%BC%BC%20Android%20Studio%20%E7%9A%84%20%E5%BC%80%E5%8F%91%E7%BB%93%E6%9E%84-toc" style="margin-left:80px;"><a href="#6%E3%80%81%E6%A0%B9%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%A4%A7%E5%B0%8F%EF%BC%8C%E5%AF%BC%E5%87%BA%E6%97%B6%E9%97%B4%E4%B8%8D%E4%B8%80%E6%A0%B7%EF%BC%8C%E5%AF%BC%E5%87%BA%E5%90%8E%EF%BC%8C%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E7%B1%BB%E4%BC%BC%20Android%20Studio%20%E7%9A%84%20%E5%BC%80%E5%8F%91%E7%BB%93%E6%9E%84">6、根据工程大小，导出时间不一样，导出后，文件结构类似 Android Studio 的 开发结构</a></p> 
+         <p id="7%E3%80%81%E6%89%93%E5%BC%80%20Android%20Studio%20%EF%BC%8C%E6%89%BE%E6%89%93%E9%A1%B9%E7%9B%AE%E8%B7%AF%E5%BE%84%EF%BC%8C%E5%AF%BC%E5%85%A5%E4%B9%8B%E5%89%8D%E5%AF%BC%E5%87%BA%E7%9A%84%E9%A1%B9%E7%9B%AE-toc" style="margin-left:80px;"><a href="#7%E3%80%81%E6%89%93%E5%BC%80%20Android%20Studio%20%EF%BC%8C%E6%89%BE%E6%89%93%E9%A1%B9%E7%9B%AE%E8%B7%AF%E5%BE%84%EF%BC%8C%E5%AF%BC%E5%85%A5%E4%B9%8B%E5%89%8D%E5%AF%BC%E5%87%BA%E7%9A%84%E9%A1%B9%E7%9B%AE">7、打开 Android Studio ，找打项目路径，导入之前导出的项目</a></p> 
+         <p id="8%E3%80%81%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%90%8E%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81%E8%AE%BE%E7%BD%AE%E4%BB%80%E4%B9%88%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%8F%AF%E4%BB%A5%20Build%20-%20Make%20Project%20%E7%9B%B4%E6%8E%A5%E7%BC%96%E8%AF%91%E5%87%BA%20apk%20%EF%BC%8C%E5%AE%89%E8%A3%85%E5%88%B0%E6%89%8B%E6%9C%BA%E4%B8%8A%EF%BC%8C%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E4%B8%8E%20Unity%20%E7%9B%B4%E6%8E%A5%E6%89%93%E5%8C%85%E5%87%BA%E6%9D%A5%E7%9A%84%E4%B8%80%E6%A0%B7-toc" style="margin-left:80px;"><a href="#8%E3%80%81%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%90%8E%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81%E8%AE%BE%E7%BD%AE%E4%BB%80%E4%B9%88%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%8F%AF%E4%BB%A5%20Build%20-%20Make%20Project%20%E7%9B%B4%E6%8E%A5%E7%BC%96%E8%AF%91%E5%87%BA%20apk%20%EF%BC%8C%E5%AE%89%E8%A3%85%E5%88%B0%E6%89%8B%E6%9C%BA%E4%B8%8A%EF%BC%8C%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E4%B8%8E%20Unity%20%E7%9B%B4%E6%8E%A5%E6%89%93%E5%8C%85%E5%87%BA%E6%9D%A5%E7%9A%84%E4%B8%80%E6%A0%B7">8、导入项目之后，不需要设置什么，直接可以 Build - Make Project 直接编译出 apk ，安装到手机上，运行效果与 Unity 直接打包出来的一样</a></p> 
+         <p id="9%E3%80%81%E5%88%B0%E6%AD%A4%EF%BC%8C%E5%B0%B1%E8%AF%B4%E6%98%8E%20Unity%20%E5%AF%BC%E5%87%BA%E5%B7%A5%E7%A8%8B%E6%B2%A1%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%8CAndroid%20Studio%20%E8%83%BD%E6%AD%A3%E5%B8%B8%E6%89%93%E5%8C%85%E7%BC%96%E8%AF%91apk%EF%BC%8C%E8%BF%90%E8%A1%8C%E4%B9%9F%E6%AD%A3%E5%B8%B8-toc" style="margin-left:80px;"><a href="#9%E3%80%81%E5%88%B0%E6%AD%A4%EF%BC%8C%E5%B0%B1%E8%AF%B4%E6%98%8E%20Unity%20%E5%AF%BC%E5%87%BA%E5%B7%A5%E7%A8%8B%E6%B2%A1%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%8CAndroid%20Studio%20%E8%83%BD%E6%AD%A3%E5%B8%B8%E6%89%93%E5%8C%85%E7%BC%96%E8%AF%91apk%EF%BC%8C%E8%BF%90%E8%A1%8C%E4%B9%9F%E6%AD%A3%E5%B8%B8">9、到此，就说明 Unity 导出工程没有问题，Android Studio 能正常打包编译apk，运行也正常</a></p> 
+         <p id="%E4%BA%94%E3%80%81%E5%9C%A8%20Android%20Studio%20%E5%8E%9F%E6%9C%89%E7%9A%84%E5%B7%A5%E7%A8%8B%E4%B8%8A%E5%AF%BC%E5%85%A5Unity%E5%B7%A5%E7%A8%8B%EF%BC%8CAndroid%20Studio%20%E7%9A%84%20MainActivity%20%E4%B8%BA%E4%B8%BB%E7%95%8C%E9%9D%A2%EF%BC%8C%E7%82%B9%E5%87%BB%E8%B7%B3%E8%BD%AC%E6%98%BE%E7%A4%BA%20UnityPlayerActivity-toc" style="margin-left:40px;"><a href="#%E4%BA%94%E3%80%81%E5%9C%A8%20Android%20Studio%20%E5%8E%9F%E6%9C%89%E7%9A%84%E5%B7%A5%E7%A8%8B%E4%B8%8A%E5%AF%BC%E5%85%A5Unity%E5%B7%A5%E7%A8%8B%EF%BC%8CAndroid%20Studio%20%E7%9A%84%20MainActivity%20%E4%B8%BA%E4%B8%BB%E7%95%8C%E9%9D%A2%EF%BC%8C%E7%82%B9%E5%87%BB%E8%B7%B3%E8%BD%AC%E6%98%BE%E7%A4%BA%20UnityPlayerActivity">五、在 Android Studio 原有的工程上导入Unity工程，Android Studio 的 MainActivity 为主界面，点击跳转显示 UnityPlayerActivity</a></p> 
+         <p id="1%E3%80%81%E6%89%93%E5%BC%80%20Android%20Studio%20%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%EF%BC%8C%E8%BF%99%E9%87%8C%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%20Androidx%20%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%8C%E4%BE%BF%E4%BA%8E%E6%9B%B4%E5%A5%BD%E7%9A%84%E9%80%82%E7%94%A8%20Unity%20%E5%AF%BC%E5%87%BA%E7%9A%84%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%BD%93%E7%84%B6%EF%BC%8C%E4%BD%A0%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%20Androidx-toc" style="margin-left:80px;"><a href="#1%E3%80%81%E6%89%93%E5%BC%80%20Android%20Studio%20%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%EF%BC%8C%E8%BF%99%E9%87%8C%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%20Androidx%20%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%8C%E4%BE%BF%E4%BA%8E%E6%9B%B4%E5%A5%BD%E7%9A%84%E9%80%82%E7%94%A8%20Unity%20%E5%AF%BC%E5%87%BA%E7%9A%84%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%BD%93%E7%84%B6%EF%BC%8C%E4%BD%A0%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%20Androidx">1、打开 Android Studio 新建一个工程项目，这里没有使用 Androidx 的东西，便于更好的适用 Unity 导出的工程，当然，你也可以使用 Androidx</a></p> 
+         <p id="2%E3%80%81%E6%8A%8A%E5%AF%B9%E5%BA%94%20Unity%20%E5%B7%A5%E7%A8%8B%E9%9C%80%E8%A6%81%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E8%B5%84%E6%BA%90%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%96%B0%E5%BB%BA%E7%9A%84%20Android%20Studio%20%E5%B7%A5%E7%A8%8B%E4%B8%AD-toc" style="margin-left:80px;"><a href="#2%E3%80%81%E6%8A%8A%E5%AF%B9%E5%BA%94%20Unity%20%E5%B7%A5%E7%A8%8B%E9%9C%80%E8%A6%81%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E8%B5%84%E6%BA%90%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%96%B0%E5%BB%BA%E7%9A%84%20Android%20Studio%20%E5%B7%A5%E7%A8%8B%E4%B8%AD">2、把对应 Unity 工程需要的文件和资源添加到新建的 Android Studio 工程中</a></p> 
+         <p id="3%E3%80%81%E8%BF%99%E9%87%8C%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8C%E6%8A%8A%20java%20%E4%B8%8B%E7%9A%84%20UnityPlayerActivity.java%20%E8%84%9A%E6%9C%AC%E4%B9%9F%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%B7%A5%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%B8%8D%E7%84%B6%E4%BC%9A%E6%8A%A5%E6%89%BE%E4%B8%8D%E5%88%B0%20UnityPlayerActivity-toc" style="margin-left:80px;"><a href="#3%E3%80%81%E8%BF%99%E9%87%8C%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8C%E6%8A%8A%20java%20%E4%B8%8B%E7%9A%84%20UnityPlayerActivity.java%20%E8%84%9A%E6%9C%AC%E4%B9%9F%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%B7%A5%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%B8%8D%E7%84%B6%E4%BC%9A%E6%8A%A5%E6%89%BE%E4%B8%8D%E5%88%B0%20UnityPlayerActivity">3、这里很重要，把 java 下的 UnityPlayerActivity.java 脚本也添加到工程中，不然会报找不到 UnityPlayerActivity</a></p> 
+         <p id="4%E3%80%81%E8%BF%99%E9%87%8C%E4%B9%9F%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8C%E6%8A%8A%E5%B7%A5%E7%A8%8B%E7%9A%84%20values%20-%20string.xml%20%E6%B7%BB%E5%8A%A0%E5%A6%82%E5%9B%BE%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%B8%8D%E7%84%B6%E4%BC%9A%E8%BF%90%E8%A1%8C%E4%BC%9A%E6%8A%A5%E9%94%99-toc" style="margin-left:80px;"><a href="#4%E3%80%81%E8%BF%99%E9%87%8C%E4%B9%9F%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8C%E6%8A%8A%E5%B7%A5%E7%A8%8B%E7%9A%84%20values%20-%20string.xml%20%E6%B7%BB%E5%8A%A0%E5%A6%82%E5%9B%BE%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%B8%8D%E7%84%B6%E4%BC%9A%E8%BF%90%E8%A1%8C%E4%BC%9A%E6%8A%A5%E9%94%99">4、这里也很重要，把工程的 values - string.xml 添加如图代码，不然会运行会报错</a></p> 
+         <p id="5%E3%80%81%E5%9C%A8%20MainActivity.java%20%E8%84%9A%E6%9C%AC%E4%B8%AD%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%8C%89%E9%92%AE%EF%BC%8C%E5%B9%B6%E4%B8%94%E7%BB%91%E5%AE%9A%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6%EF%BC%8C%E7%82%B9%E5%87%BB%E8%B7%B3%E8%BD%AC%E5%88%B0%20UnityActivity%EF%BC%9B%E6%96%B0%E5%BB%BATestUnityActivity.java%EF%BC%8C%E6%98%BE%E7%A4%BAUnityActivity%E7%95%8C%E9%9D%A2%EF%BC%88%E6%B3%A8%E6%84%8F%EF%BC%9A%E7%BB%A7%E6%89%BF%20UnityPlayerActivity%EF%BC%89%EF%BC%8C%E5%B9%B6%E7%9B%91%E5%90%AC%E8%BF%94%E5%9B%9E%E9%94%AE%E4%BA%8B%E4%BB%B6%E8%BF%94%E5%9B%9E%E5%88%B0MainActivity%EF%BC%9BMainActivity%20%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6%E7%AD%89%20%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B%E5%9B%BE-toc" style="margin-left:80px;"><a href="#5%E3%80%81%E5%9C%A8%20MainActivity.java%20%E8%84%9A%E6%9C%AC%E4%B8%AD%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%8C%89%E9%92%AE%EF%BC%8C%E5%B9%B6%E4%B8%94%E7%BB%91%E5%AE%9A%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6%EF%BC%8C%E7%82%B9%E5%87%BB%E8%B7%B3%E8%BD%AC%E5%88%B0%20UnityActivity%EF%BC%9B%E6%96%B0%E5%BB%BATestUnityActivity.java%EF%BC%8C%E6%98%BE%E7%A4%BAUnityActivity%E7%95%8C%E9%9D%A2%EF%BC%88%E6%B3%A8%E6%84%8F%EF%BC%9A%E7%BB%A7%E6%89%BF%20UnityPlayerActivity%EF%BC%89%EF%BC%8C%E5%B9%B6%E7%9B%91%E5%90%AC%E8%BF%94%E5%9B%9E%E9%94%AE%E4%BA%8B%E4%BB%B6%E8%BF%94%E5%9B%9E%E5%88%B0MainActivity%EF%BC%9BMainActivity%20%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6%E7%AD%89%20%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B%E5%9B%BE">5、在 MainActivity.java 脚本中添加一个按钮，并且绑定按钮事件，点击跳转到 UnityActivity；新建TestUnityActivity.java，显示UnityActivity界面（注意：继承 UnityPlayerActivity），并监听返回键事件返回到MainActivity；MainActivity 布局文件等 具体如下图</a></p> 
+         <p id="6%E3%80%81AndroidManifest.xml%20%E4%B8%AD%E6%B7%BB%E5%8A%A0%20Unity%20%E5%B7%A5%E7%A8%8B%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90%E7%AD%89%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%BF%85%E8%A6%81%E8%BF%9B%E8%A1%8C%20AndroidManifest%20%E5%90%88%E5%B9%B6%EF%BC%8C%E5%B9%B6%E4%B8%94%E6%B7%BB%E5%8A%A0-toc" style="margin-left:80px;"><a href="#6%E3%80%81AndroidManifest.xml%20%E4%B8%AD%E6%B7%BB%E5%8A%A0%20Unity%20%E5%B7%A5%E7%A8%8B%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90%E7%AD%89%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%BF%85%E8%A6%81%E8%BF%9B%E8%A1%8C%20AndroidManifest%20%E5%90%88%E5%B9%B6%EF%BC%8C%E5%B9%B6%E4%B8%94%E6%B7%BB%E5%8A%A0">6、AndroidManifest.xml 中添加 Unity 工程需要的权限等，就是必要进行 AndroidManifest 合并，并且添加</a></p> 
+         <p id="7%E3%80%81%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%20apk%20%EF%BC%8C%E6%89%8B%E6%9C%BA%E4%B8%8A%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B%EF%BC%8C%E7%AC%A6%E5%90%88%E9%A2%84%E6%9C%9F-toc" style="margin-left:80px;"><a href="#7%E3%80%81%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%20apk%20%EF%BC%8C%E6%89%8B%E6%9C%BA%E4%B8%8A%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B%EF%BC%8C%E7%AC%A6%E5%90%88%E9%A2%84%E6%9C%9F">7、就可以编译打包 apk ，手机上运行效果如下，符合预期</a></p> 
+         <p id="%E5%85%AD%E3%80%81%E5%9F%BA%E4%BA%8E%E4%B8%8A%E9%9D%A2%E7%9A%84%E6%A1%88%E4%BE%8B%EF%BC%8C%E6%8A%8A%20UnityActivity%20%E5%B5%8C%E5%85%A5%E5%88%B0%20Android%20Studio%20%E5%B8%83%E5%B1%80%E4%B8%AD%EF%BC%8C%E4%BD%9C%E4%B8%BA%E5%B8%83%E5%B1%80%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86-toc" style="margin-left:40px;"><a href="#%E5%85%AD%E3%80%81%E5%9F%BA%E4%BA%8E%E4%B8%8A%E9%9D%A2%E7%9A%84%E6%A1%88%E4%BE%8B%EF%BC%8C%E6%8A%8A%20UnityActivity%20%E5%B5%8C%E5%85%A5%E5%88%B0%20Android%20Studio%20%E5%B8%83%E5%B1%80%E4%B8%AD%EF%BC%8C%E4%BD%9C%E4%B8%BA%E5%B8%83%E5%B1%80%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86">六、基于上面的案例，把 UnityActivity 嵌入到 Android Studio 布局中，作为布局的一部分</a></p> 
+         <p id="1%E3%80%81%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E5%B8%83%E5%B1%80%EF%BC%8C%E8%BF%99%E9%87%8C%E5%8F%AA%E5%9C%A8%E5%B8%83%E5%B1%80%E4%B8%AD%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%8C%89%E9%92%AE%EF%BC%88%E5%A4%A7%E5%AE%B6%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E9%9C%80%E8%A6%81%E6%B7%BB%E5%8A%A0%E4%BF%AE%E6%94%B9%EF%BC%89%EF%BC%8C%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B-toc" style="margin-left:80px;"><a href="#1%E3%80%81%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E5%B8%83%E5%B1%80%EF%BC%8C%E8%BF%99%E9%87%8C%E5%8F%AA%E5%9C%A8%E5%B8%83%E5%B1%80%E4%B8%AD%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%8C%89%E9%92%AE%EF%BC%88%E5%A4%A7%E5%AE%B6%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E9%9C%80%E8%A6%81%E6%B7%BB%E5%8A%A0%E4%BF%AE%E6%94%B9%EF%BC%89%EF%BC%8C%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B">1、添加一个新的布局，这里只在布局中添加一个测试按钮（大家可以根据需要添加修改），具体如下</a></p> 
+         <p id="2%E3%80%81TestUnityActivity.java%20%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%B7%BB%E5%8A%A0%E6%98%BE%E7%A4%BA%E5%B8%83%E5%B1%80%E5%86%85%E5%AE%B9%EF%BC%8C%E5%B9%B6%E8%8E%B7%E5%8F%96%20UnityActivity%20%E7%9A%84%20view%20%E6%98%BE%E7%A4%BA%E5%9C%A8%20%E7%BA%BF%E6%80%A7%E5%B8%83%E5%B1%80%E4%B8%8A%EF%BC%8C%E5%B9%B6%E7%BB%99%E6%8C%89%E9%92%AE%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E8%BF%94%E5%9B%9E%20MainActivity%EF%BC%8C%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B%E5%9B%BE-toc" style="margin-left:80px;"><a href="#2%E3%80%81TestUnityActivity.java%20%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%B7%BB%E5%8A%A0%E6%98%BE%E7%A4%BA%E5%B8%83%E5%B1%80%E5%86%85%E5%AE%B9%EF%BC%8C%E5%B9%B6%E8%8E%B7%E5%8F%96%20UnityActivity%20%E7%9A%84%20view%20%E6%98%BE%E7%A4%BA%E5%9C%A8%20%E7%BA%BF%E6%80%A7%E5%B8%83%E5%B1%80%E4%B8%8A%EF%BC%8C%E5%B9%B6%E7%BB%99%E6%8C%89%E9%92%AE%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E8%BF%94%E5%9B%9E%20MainActivity%EF%BC%8C%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B%E5%9B%BE">2、TestUnityActivity.java 更新代码，添加显示布局内容，并获取 UnityActivity 的 view 显示在 线性布局上，并给按钮绑定事件返回 MainActivity，具体如下图</a></p> 
+         <p id="3%E3%80%81%E8%AF%B7%E6%B3%A8%E6%84%8F%EF%BC%8C%E8%BF%99%E9%87%8C%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8CAndroidManifest.xml%20%E5%9C%A8%20TestUnityActivity%20%E6%B7%BB%E5%8A%A0%20process%20%E5%B1%9E%E6%80%A7%EF%BC%8C%E9%81%BF%E5%85%8D%20finish()%E7%A8%8B%E5%BA%8F%E9%97%AA%E9%80%80%E7%9A%84%E7%8E%B0%E8%B1%A1-toc" style="margin-left:80px;"><a href="#3%E3%80%81%E8%AF%B7%E6%B3%A8%E6%84%8F%EF%BC%8C%E8%BF%99%E9%87%8C%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8CAndroidManifest.xml%20%E5%9C%A8%20TestUnityActivity%20%E6%B7%BB%E5%8A%A0%20process%20%E5%B1%9E%E6%80%A7%EF%BC%8C%E9%81%BF%E5%85%8D%20finish%28%29%E7%A8%8B%E5%BA%8F%E9%97%AA%E9%80%80%E7%9A%84%E7%8E%B0%E8%B1%A1">3、请注意，这里很重要，AndroidManifest.xml 在 TestUnityActivity 添加 process 属性，避免 finish()程序闪退的现象</a></p> 
+         <p id="4%E3%80%81%E8%BF%90%E8%A1%8C%E7%9A%84%E5%A6%82%E4%B8%8B%EF%BC%8C%E7%82%B9%E5%87%BB%20%E2%80%9C%E8%BF%94%E5%9B%9E%E2%80%9D%EF%BC%8C%E8%BF%94%E5%9B%9E%20MainActivity%EF%BC%8C%E5%AE%89%E5%85%A8%E6%B2%A1%E6%9C%89%E9%97%AA%E9%80%80%EF%BC%8C%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B-toc" style="margin-left:80px;"><a href="#4%E3%80%81%E8%BF%90%E8%A1%8C%E7%9A%84%E5%A6%82%E4%B8%8B%EF%BC%8C%E7%82%B9%E5%87%BB%20%E2%80%9C%E8%BF%94%E5%9B%9E%E2%80%9D%EF%BC%8C%E8%BF%94%E5%9B%9E%20MainActivity%EF%BC%8C%E5%AE%89%E5%85%A8%E6%B2%A1%E6%9C%89%E9%97%AA%E9%80%80%EF%BC%8C%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B">4、运行的如下，点击 “返回”，返回 MainActivity，安全没有闪退，具体如下</a></p> 
+         <p id="%E4%B8%83%E3%80%81%E5%8F%82%E8%80%83%E5%B7%A5%E7%A8%8B-toc" style="margin-left:40px;"><a href="#%E4%B8%83%E3%80%81%E5%8F%82%E8%80%83%E5%B7%A5%E7%A8%8B">七、参考工程</a></p> 
+         <hr id="hr-toc"> 
+         <p>&nbsp;</p> 
+         <h2 id="%E4%B8%80%E3%80%81%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D">一、简单介绍</h2> 
+         <p style="text-indent:33px;">Unity中的一些基础知识点。</p> 
+         <p style="text-indent:33px;">之前就有介绍过，如何把Unity的应用切入到 Android 中，之前是老版本的 Unity ，现在以新的版本的 Unity 和 Android Studio 作为实现环境，进行说明，若有不对还请指出，谢谢。</p> 
+         <p style="text-indent:33px;">之前老版本的博文地址：<a href="https://blog.csdn.net/u014361280/article/details/91888091">https://blog.csdn.net/u014361280/article/details/91888091</a></p> 
+         <p style="text-indent:33px;">Unity 和 Android 混合开发大致分为以下两大类：</p> 
+         <p style="text-indent:33px;">1）Unity做好项目之后导出为Android Studio项目，导入到Android Studio中进行之后的功能开发。最后由Android Studio打包APK。即Unity辅助Android开发（Android开发为主），对Android技能要求较高。</p> 
+         <p style="text-indent:33px;">2）Android Sutido做好项目导出jar或aar包，导入到Unity中作为Unity的插件使用，最后由Unity打包APK。即Android辅助Unity开发（Unity开发为主），对Unity技能要求较高。</p> 
+         <p style="text-indent:33px;"><span style="color:#f33b45;">注意：Unity打包APK时，调用安卓SDK，把所有游戏内容整合打包出的APK中只有一个MainActivity。</span></p> 
+         <h2 id="%C2%A0%E4%BA%8C%E3%80%81%E6%A1%88%E4%BE%8B%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%EF%BC%9A">&nbsp;<br> 二、案例开发环境：</h2> 
+         <p style="text-indent:33px;">Unity： 2019.3.13f</p> 
+         <p style="text-indent:33px;">Android Studio：4.1.1</p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h2 id="%E4%B8%89%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">三、注意事项</h2> 
+         <p style="text-indent:33px;">1、新版本 Unity 导出的 工程，记得需要自己再倒入或者重写 UnityPlayerActivity.java ，可以使用 Unity 现有的，不然会报找不到 UnityPlayerActivity</p> 
+         <p style="text-indent:33px;">2、values 文件夹 string.xml 需要添加 &lt;string name="game_view_content_description"&gt;Game view&lt;/string&gt; ，不然可能会有报错闪退现象</p> 
+         <p style="text-indent:33px;">3、在使用 finish() 退出 UnityPlayerActivity 的时候，记得在 AndroidMainifest.xml 中添加 android:process=":unity" 属性，不然退出 UnityPlayerActivity&nbsp; 返回的时候会整个应用退出</p> 
+         <p style="text-indent:33px;">具体见下面操作步骤中有详写</p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h2 id="%E5%9B%9B%E3%80%81Unity%20%E5%BA%94%E7%94%A8%E5%B7%A5%E7%A8%8B%E6%95%B4%E4%BD%93%E5%AF%BC%E5%87%BA%EF%BC%8C%20%E6%95%B4%E4%B8%AA%E5%B7%A5%E7%A8%8B%E4%BD%9C%E4%B8%BA%20Android%20%E5%B7%A5%E7%A8%8B%20Import%20Project%20%E8%BF%9B%20Android%20studio%EF%BC%8C%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%E7%94%9F%E6%88%90%20APK">四、Unity 应用工程整体导出， 整个工程作为 Android 工程 Import Project 进 Android studio，编译运行生成 APK</h2> 
+         <h3 id="1%E3%80%81%E6%89%93%E5%BC%80%20Unity%20%EF%BC%8C%E6%B7%BB%E5%8A%A0%20Cube%20%E5%92%8C%20Button%20%E5%B8%83%E5%B1%80%E5%A6%82%E4%B8%8B">1、打开 Unity ，添加 Cube 和 Button 布局如下</h3> 
+         <p style="text-indent:33px;"><img alt="" height="573" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408154516466.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="979"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="2%E3%80%81%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%8E%A7%E5%88%B6%20Cube%20%E6%97%8B%E8%BD%AC%E5%92%8C%E9%A2%9C%E8%89%B2%E5%8F%98%E5%8C%96">2、编写一个脚本，用于控制 Cube 旋转和颜色变化</h3> 
+         <p style="text-indent:33px;"><img alt="" height="775" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408154611289.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="724"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="3%E3%80%81%E8%84%9A%E6%9C%AC%E6%8C%82%E8%BD%BD%E5%88%B0%20Cube%20%E4%B8%8A%EF%BC%8C%E5%B9%B6%E5%AF%B9%E5%BA%94%E8%B5%8B%E5%80%BC">3、脚本挂载到 Cube 上，并对应赋值</h3> 
+         <p style="text-indent:33px;"><img alt="" height="533" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408154742154.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="730"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="4%E3%80%81%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B">4、运行效果如下</h3> 
+         <p style="text-indent:33px;"><img alt="" height="551" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F2021040815494533.gif&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="993"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="5%E3%80%81File%20-%20Build%20Settings%20%E8%BF%9B%E8%A1%8C%E7%9B%B8%E5%85%B3%E5%A6%82%E4%B8%8B%E8%AE%BE%E7%BD%AE%EF%BC%8C%E7%84%B6%E5%90%8E%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%AF%BC%E5%87%BA%E5%B7%A5%E7%A8%8B%E4%BA%86">5、File - Build Settings 进行相关如下设置，然后就可以导出工程了</h3> 
+         <p style="text-indent:33px;"><img alt="" height="598" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F2021040815522247.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="630"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="6%E3%80%81%E6%A0%B9%E6%8D%AE%E5%B7%A5%E7%A8%8B%E5%A4%A7%E5%B0%8F%EF%BC%8C%E5%AF%BC%E5%87%BA%E6%97%B6%E9%97%B4%E4%B8%8D%E4%B8%80%E6%A0%B7%EF%BC%8C%E5%AF%BC%E5%87%BA%E5%90%8E%EF%BC%8C%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E7%B1%BB%E4%BC%BC%20Android%20Studio%20%E7%9A%84%20%E5%BC%80%E5%8F%91%E7%BB%93%E6%9E%84">6、根据工程大小，导出时间不一样，导出后，文件结构类似 Android Studio 的 开发结构</h3> 
+         <p style="text-indent:33px;"><img alt="" height="605" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408155528660.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="674"></p> 
+         <p style="text-indent:33px;"><img alt="" height="641" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408155828468.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="901"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="7%E3%80%81%E6%89%93%E5%BC%80%20Android%20Studio%20%EF%BC%8C%E6%89%BE%E6%89%93%E9%A1%B9%E7%9B%AE%E8%B7%AF%E5%BE%84%EF%BC%8C%E5%AF%BC%E5%85%A5%E4%B9%8B%E5%89%8D%E5%AF%BC%E5%87%BA%E7%9A%84%E9%A1%B9%E7%9B%AE">7、打开 Android Studio ，找打项目路径，导入之前导出的项目</h3> 
+         <p style="text-indent:33px;"><img alt="" height="542" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408155939924.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="849"></p> 
+         <p style="text-indent:33px;"><img alt="" height="539" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F2021040816004646.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="656"></p> 
+         <p style="text-indent:33px;"><img alt="" height="505" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408160158904.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="712"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="8%E3%80%81%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE%E4%B9%8B%E5%90%8E%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81%E8%AE%BE%E7%BD%AE%E4%BB%80%E4%B9%88%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%8F%AF%E4%BB%A5%20Build%20-%20Make%20Project%20%E7%9B%B4%E6%8E%A5%E7%BC%96%E8%AF%91%E5%87%BA%20apk%20%EF%BC%8C%E5%AE%89%E8%A3%85%E5%88%B0%E6%89%8B%E6%9C%BA%E4%B8%8A%EF%BC%8C%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E4%B8%8E%20Unity%20%E7%9B%B4%E6%8E%A5%E6%89%93%E5%8C%85%E5%87%BA%E6%9D%A5%E7%9A%84%E4%B8%80%E6%A0%B7">8、导入项目之后，不需要设置什么，直接可以 Build - Make Project 直接编译出 apk ，安装到手机上，运行效果与 Unity 直接打包出来的一样</h3> 
+         <p style="text-indent:33px;"><img alt="" height="609" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408160429679.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="829"></p> 
+         <p style="text-indent:33px;"><img alt="" height="502" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F2021040816071091.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="876"></p> 
+         <p style="text-indent:33px;"><img alt="" height="357" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408160556486.gif&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="644"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="9%E3%80%81%E5%88%B0%E6%AD%A4%EF%BC%8C%E5%B0%B1%E8%AF%B4%E6%98%8E%20Unity%20%E5%AF%BC%E5%87%BA%E5%B7%A5%E7%A8%8B%E6%B2%A1%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%8CAndroid%20Studio%20%E8%83%BD%E6%AD%A3%E5%B8%B8%E6%89%93%E5%8C%85%E7%BC%96%E8%AF%91apk%EF%BC%8C%E8%BF%90%E8%A1%8C%E4%B9%9F%E6%AD%A3%E5%B8%B8">9、到此，就说明 Unity 导出工程没有问题，Android Studio 能正常打包编译apk，运行也正常</h3> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h2 id="%E4%BA%94%E3%80%81%E5%9C%A8%20Android%20Studio%20%E5%8E%9F%E6%9C%89%E7%9A%84%E5%B7%A5%E7%A8%8B%E4%B8%8A%E5%AF%BC%E5%85%A5Unity%E5%B7%A5%E7%A8%8B%EF%BC%8CAndroid%20Studio%20%E7%9A%84%20MainActivity%20%E4%B8%BA%E4%B8%BB%E7%95%8C%E9%9D%A2%EF%BC%8C%E7%82%B9%E5%87%BB%E8%B7%B3%E8%BD%AC%E6%98%BE%E7%A4%BA%20UnityPlayerActivity">五、在 Android Studio 原有的工程上导入Unity工程，Android Studio 的 MainActivity 为主界面，点击跳转显示 UnityPlayerActivity</h2> 
+         <h3 id="1%E3%80%81%E6%89%93%E5%BC%80%20Android%20Studio%20%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%EF%BC%8C%E8%BF%99%E9%87%8C%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%20Androidx%20%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%8C%E4%BE%BF%E4%BA%8E%E6%9B%B4%E5%A5%BD%E7%9A%84%E9%80%82%E7%94%A8%20Unity%20%E5%AF%BC%E5%87%BA%E7%9A%84%E5%B7%A5%E7%A8%8B%EF%BC%8C%E5%BD%93%E7%84%B6%EF%BC%8C%E4%BD%A0%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%20Androidx">1、打开 Android Studio 新建一个工程项目，这里没有使用 Androidx 的东西，便于更好的适用 Unity 导出的工程，当然，你也可以使用 Androidx</h3> 
+         <p style="text-indent:33px;"><img alt="" height="542" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408161423364.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="650"></p> 
+         <p style="text-indent:33px;"><img alt="" height="641" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408161439659.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="899"></p> 
+         <p style="text-indent:33px;"><img alt="" height="643" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408161654421.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="890"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="2%E3%80%81%E6%8A%8A%E5%AF%B9%E5%BA%94%20Unity%20%E5%B7%A5%E7%A8%8B%E9%9C%80%E8%A6%81%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E8%B5%84%E6%BA%90%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%96%B0%E5%BB%BA%E7%9A%84%20Android%20Studio%20%E5%B7%A5%E7%A8%8B%E4%B8%AD">2、把对应 Unity 工程需要的文件和资源添加到新建的 Android Studio 工程中</h3> 
+         <p style="text-indent:33px;"><img alt="" height="614" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408162231723.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="1011"></p> 
+         <p style="text-indent:33px;"><img alt="" height="777" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408162334294.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="661"></p> 
+         <p style="text-indent:33px;"><img alt="" height="571" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408162640715.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="907"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="3%E3%80%81%E8%BF%99%E9%87%8C%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8C%E6%8A%8A%20java%20%E4%B8%8B%E7%9A%84%20UnityPlayerActivity.java%20%E8%84%9A%E6%9C%AC%E4%B9%9F%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%B7%A5%E7%A8%8B%E4%B8%AD%EF%BC%8C%E4%B8%8D%E7%84%B6%E4%BC%9A%E6%8A%A5%E6%89%BE%E4%B8%8D%E5%88%B0%20UnityPlayerActivity">3、这里很重要，把 java 下的 UnityPlayerActivity.java 脚本也添加到工程中，不然会报找不到 UnityPlayerActivity</h3> 
+         <p style="text-indent:33px;"><img alt="" height="586" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408162938504.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="977"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="4%E3%80%81%E8%BF%99%E9%87%8C%E4%B9%9F%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8C%E6%8A%8A%E5%B7%A5%E7%A8%8B%E7%9A%84%20values%20-%20string.xml%20%E6%B7%BB%E5%8A%A0%E5%A6%82%E5%9B%BE%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%B8%8D%E7%84%B6%E4%BC%9A%E8%BF%90%E8%A1%8C%E4%BC%9A%E6%8A%A5%E9%94%99">4、这里也很重要，把工程的 values - string.xml 添加如图代码，不然会运行会报错</h3> 
+         <p style="text-indent:33px;">报错：android.content.res.Resources$NotFoundException: String resource ID #0x0</p> 
+         <p style="text-indent:33px;"><img alt="" height="754" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F2021040816335722.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="1200"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="5%E3%80%81%E5%9C%A8%20MainActivity.java%20%E8%84%9A%E6%9C%AC%E4%B8%AD%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%8C%89%E9%92%AE%EF%BC%8C%E5%B9%B6%E4%B8%94%E7%BB%91%E5%AE%9A%E6%8C%89%E9%92%AE%E4%BA%8B%E4%BB%B6%EF%BC%8C%E7%82%B9%E5%87%BB%E8%B7%B3%E8%BD%AC%E5%88%B0%20UnityActivity%EF%BC%9B%E6%96%B0%E5%BB%BATestUnityActivity.java%EF%BC%8C%E6%98%BE%E7%A4%BAUnityActivity%E7%95%8C%E9%9D%A2%EF%BC%88%E6%B3%A8%E6%84%8F%EF%BC%9A%E7%BB%A7%E6%89%BF%20UnityPlayerActivity%EF%BC%89%EF%BC%8C%E5%B9%B6%E7%9B%91%E5%90%AC%E8%BF%94%E5%9B%9E%E9%94%AE%E4%BA%8B%E4%BB%B6%E8%BF%94%E5%9B%9E%E5%88%B0MainActivity%EF%BC%9BMainActivity%20%E5%B8%83%E5%B1%80%E6%96%87%E4%BB%B6%E7%AD%89%20%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B%E5%9B%BE">5、在 MainActivity.java 脚本中添加一个按钮，并且绑定按钮事件，点击跳转到 UnityActivity；新建TestUnityActivity.java，显示UnityActivity界面（注意：继承 UnityPlayerActivity），并监听返回键事件返回到MainActivity；MainActivity 布局文件等 具体如下图</h3> 
+         <p style="text-indent:33px;"><img alt="" height="500" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408164956221.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="1018"></p> 
+         <p style="text-indent:33px;"><img alt="" height="531" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408165019683.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="993"></p> 
+         <p style="text-indent:33px;"><img alt="" height="450" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408165052950.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="978"></p> 
+         <pre><code class="language-html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"&gt;
+
+    &lt;Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:text="跳转"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /&gt;
+
+
+&lt;/android.support.constraint.ConstraintLayout&gt;</code></pre> 
+         <pre><code class="language-java">import android.content.Intent;
+import android.os.Bundle;
+import android.view.KeyEvent;
+
+public class TestUnityActivity extends UnityPlayerActivity {
+
+    @Override
+    protected void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+    }
+
+    @Override
+    public boolean onKeyDown(int i, KeyEvent keyEvent) {
+        // 添加返回键返回 MainActivity
+        if(i == KeyEvent.KEYCODE_BACK){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onKeyDown(i, keyEvent);
+    }
+}</code></pre> 
+         <pre><code class="language-java">import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void click(View view){
+        // 点击跳转到 UnityActivity
+        Intent intent = new Intent(this, TestUnityActivity.class);
+        startActivity(intent);
+
+    }
+
+}</code></pre> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="6%E3%80%81AndroidManifest.xml%20%E4%B8%AD%E6%B7%BB%E5%8A%A0%20Unity%20%E5%B7%A5%E7%A8%8B%E9%9C%80%E8%A6%81%E7%9A%84%E6%9D%83%E9%99%90%E7%AD%89%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%BF%85%E8%A6%81%E8%BF%9B%E8%A1%8C%20AndroidManifest%20%E5%90%88%E5%B9%B6%EF%BC%8C%E5%B9%B6%E4%B8%94%E6%B7%BB%E5%8A%A0">6、AndroidManifest.xml 中添加 Unity 工程需要的权限等，就是必要进行 AndroidManifest 合并，并且添加</h3> 
+         <p style="text-indent:33px;">&lt;activity android:name=".TestUnityActivity"&gt;&lt;/activity&gt;</p> 
+         <p style="text-indent:33px;"><img alt="" height="561" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408165440859.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="1000"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="7%E3%80%81%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%BC%96%E8%AF%91%E6%89%93%E5%8C%85%20apk%20%EF%BC%8C%E6%89%8B%E6%9C%BA%E4%B8%8A%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B%EF%BC%8C%E7%AC%A6%E5%90%88%E9%A2%84%E6%9C%9F">7、就可以编译打包 apk ，手机上运行效果如下，符合预期</h3> 
+         <p style="text-indent:33px;">（看着横屏小，是因为录屏软件的原因）</p> 
+         <p style="text-indent:33px;"><img alt="" height="783" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408164843672.gif&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="433"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h2 id="%E5%85%AD%E3%80%81%E5%9F%BA%E4%BA%8E%E4%B8%8A%E9%9D%A2%E7%9A%84%E6%A1%88%E4%BE%8B%EF%BC%8C%E6%8A%8A%20UnityActivity%20%E5%B5%8C%E5%85%A5%E5%88%B0%20Android%20Studio%20%E5%B8%83%E5%B1%80%E4%B8%AD%EF%BC%8C%E4%BD%9C%E4%B8%BA%E5%B8%83%E5%B1%80%E7%9A%84%E4%B8%80%E9%83%A8%E5%88%86">六、基于上面的案例，把 UnityActivity 嵌入到 Android Studio 布局中，作为布局的一部分</h2> 
+         <h3 id="1%E3%80%81%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E5%B8%83%E5%B1%80%EF%BC%8C%E8%BF%99%E9%87%8C%E5%8F%AA%E5%9C%A8%E5%B8%83%E5%B1%80%E4%B8%AD%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%8C%89%E9%92%AE%EF%BC%88%E5%A4%A7%E5%AE%B6%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E9%9C%80%E8%A6%81%E6%B7%BB%E5%8A%A0%E4%BF%AE%E6%94%B9%EF%BC%89%EF%BC%8C%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B">1、添加一个新的布局，这里只在布局中添加一个测试按钮（大家可以根据需要添加修改），具体如下</h3> 
+         <p style="text-indent:33px;"><img alt="" height="624" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408170705777.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="960"></p> 
+         <pre><code class="language-html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"&gt;
+
+    &lt;LinearLayout
+        android:id="@+id/ll_unity_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"&gt;
+
+    &lt;/LinearLayout&gt;
+
+    &lt;Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="49dp"
+        android:layout_marginRight="49dp"
+        android:layout_marginBottom="41dp"
+        android:onClick="click"
+        android:text="返回" /&gt;
+
+
+&lt;/RelativeLayout&gt;</code></pre> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="2%E3%80%81TestUnityActivity.java%20%E6%9B%B4%E6%96%B0%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%B7%BB%E5%8A%A0%E6%98%BE%E7%A4%BA%E5%B8%83%E5%B1%80%E5%86%85%E5%AE%B9%EF%BC%8C%E5%B9%B6%E8%8E%B7%E5%8F%96%20UnityActivity%20%E7%9A%84%20view%20%E6%98%BE%E7%A4%BA%E5%9C%A8%20%E7%BA%BF%E6%80%A7%E5%B8%83%E5%B1%80%E4%B8%8A%EF%BC%8C%E5%B9%B6%E7%BB%99%E6%8C%89%E9%92%AE%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E8%BF%94%E5%9B%9E%20MainActivity%EF%BC%8C%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B%E5%9B%BE">2、TestUnityActivity.java 更新代码，添加显示布局内容，并获取 UnityActivity 的 view 显示在 线性布局上，并给按钮绑定事件返回 MainActivity，具体如下图</h3> 
+         <p style="text-indent:33px;"><img alt="" height="713" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408175906587.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="1039">​</p> 
+         <pre><code class="language-java">import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.LinearLayout;
+
+public class TestUnityActivity extends UnityPlayerActivity {
+
+    @Override
+    protected void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+
+        setContentView(R.layout.activity_unity);
+        LinearLayout ll_unity_container = findViewById(R.id.ll_unity_container);
+        View unity_view = mUnityPlayer.getView();
+        ll_unity_container.addView(unity_view);
+    }
+
+    public void click(View view){
+        callMainActivity();
+    }
+
+    @Override
+    public boolean onKeyDown(int i, KeyEvent keyEvent) {
+        // 添加返回键返回 MainActivity
+        if(i == KeyEvent.KEYCODE_BACK){
+            callMainActivity();
+        }
+        return super.onKeyDown(i, keyEvent);
+    }
+
+    private void callMainActivity(){
+    Intent intent = new Intent(TestUnityActivity.this, MainActivity.class);
+    startActivity(intent);
+    TestUnityActivity.this.finish(); // 直接finish() 有些版本会出现闪退,可以试试下面
+//        new Handler().post(()-&gt;{
+//
+//            TestUnityActivity.this.finish();
+//        });
+
+
+    }
+
+}</code></pre> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="3%E3%80%81%E8%AF%B7%E6%B3%A8%E6%84%8F%EF%BC%8C%E8%BF%99%E9%87%8C%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%8CAndroidManifest.xml%20%E5%9C%A8%20TestUnityActivity%20%E6%B7%BB%E5%8A%A0%20process%20%E5%B1%9E%E6%80%A7%EF%BC%8C%E9%81%BF%E5%85%8D%20finish()%E7%A8%8B%E5%BA%8F%E9%97%AA%E9%80%80%E7%9A%84%E7%8E%B0%E8%B1%A1">3、请注意，这里很重要，AndroidManifest.xml 在 TestUnityActivity 添加 process 属性，避免 finish()程序闪退的现象</h3> 
+         <p style="text-indent:33px;">android:process=":unity"</p> 
+         <p style="text-indent:33px;"><img alt="" height="496" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210408175647598.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="1117"></p> 
+         <pre><code class="language-html">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.testunityembedandroid0408forcsdn"&gt;
+
+    &lt;application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TestUnityEmbedAndroid0408ForCSDN"
+        android:configChanges="keyboardHidden|orientation|screenSize|screenSize" &gt;
+        &lt;activity android:name=".MainActivity"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+
+        &lt;activity android:name=".TestUnityActivity"
+            android:process=":unity"&gt;
+
+        &lt;/activity&gt;
+
+    &lt;/application&gt;
+
+&lt;/manifest&gt;</code></pre> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h3 id="4%E3%80%81%E8%BF%90%E8%A1%8C%E7%9A%84%E5%A6%82%E4%B8%8B%EF%BC%8C%E7%82%B9%E5%87%BB%20%E2%80%9C%E8%BF%94%E5%9B%9E%E2%80%9D%EF%BC%8C%E8%BF%94%E5%9B%9E%20MainActivity%EF%BC%8C%E5%AE%89%E5%85%A8%E6%B2%A1%E6%9C%89%E9%97%AA%E9%80%80%EF%BC%8C%E5%85%B7%E4%BD%93%E5%A6%82%E4%B8%8B">4、运行的如下，点击 “返回”，返回 MainActivity，安全没有闪退，具体如下</h3> 
+         <p style="text-indent:33px;"><img alt="" height="783" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F2021040818024089.gif&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="433"></p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <h2 id="%E4%B8%83%E3%80%81%E5%8F%82%E8%80%83%E5%B7%A5%E7%A8%8B">七、参考工程</h2> 
+         <p style="text-indent:33px;">参考工程下载地址：<a href="https://download.csdn.net/download/u014361280/16580036">https://download.csdn.net/download/u014361280/16580036</a></p> 
+         <p style="text-indent:33px;">文章说的很详细了，应该不需要参考工程了的吧，根据需要大家看情况下载哈</p> 
+         <p style="text-indent:33px;">&nbsp;</p> 
+         <p style="text-indent:0;"><img alt="" height="1080" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20210409145244421.png%3Fx-oss-process%3Dimage%2Fwatermark%2Ctype_ZmFuZ3poZW5naGVpdGk%2Cshadow_10%2Ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQzNjEyODA%3D%2Csize_16%2Ccolor_FFFFFF%2Ct_70&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" width="1200"></p> 
+        </div> 
+       </div> 
+       <div id="treeSkill"></div> 
+      </article>  
+     </div> 
+     <div class="more-toolbox-new" id="toolBarBox"> 
+      <div class="left-toolbox"> 
+       <div class="toolbox-left"> 
+        <div class="profile-box">
+         <a class="profile-href" target="_blank" href="https://blog.csdn.net/u014361280"><img class="profile-img" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fprofile.csdnimg.cn%2F1%2FF%2FC%2F3_u014361280&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058"><span class="profile-name">仙魁XAN</span></a>
+        </div> 
+        <div class="profile-attend"> 
+         <a class="tool-attend tool-bt-button tool-unbt-attend" href="javascript:;" data-report-view="{&quot;mod&quot;:&quot;1592215036_002&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4232&quot;,&quot;extend1&quot;:&quot;已关注&quot;}">已关注</a> 
+         <a class="tool-item-follow active-animation" style="display:none;">关注</a> 
+        </div> 
+       </div> 
+       <div class="toolbox-middle">  
+       </div> 
+       <div class="toolbox-right"> 
+        <div class="tool-directory"> 
+         <a class="bt-columnlist-show" data-id="9753534" data-free="true" data-subscribe="false" data-title="Unity Android" data-img="https://img-blog.csdnimg.cn/20201014180756913.png?x-oss-process=image/resize,m_fixed,h_64,w_64" data-url="https://blog.csdn.net/u014361280/category_9753534.html" data-sum="17" data-people="3" data-price="0" data-oldprice="0" data-join="false" data-studyvip="true" data-studysubscribe="false" data-report-view="{&quot;spm&quot;:&quot;1001.2101.3001.6334&quot;,&quot;extend1&quot;:&quot;专栏目录&quot;}" data-report-click="{&quot;spm&quot;:&quot;1001.2101.3001.6334&quot;,&quot;extend1&quot;:&quot;专栏目录&quot;}">专栏目录</a> 
+        </div> 
+       </div> 
+      </div> 
+     </div>        
+     <a id="commentBox" name="commentBox"></a>   
+     <div id="recommendNps" class="recommend-nps-box common-nps-box"> 
+      <h3 class="aside-title">“相关推荐”对你有帮助么？</h3> 
+      <div class="aside-content"> 
+       <ul class="newnps-list"> 
+        <li class="newnps-item" data-type="非常没帮助"> 
+         <div class="newnps-img-box"> 
+          <img class="newnps-img active" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnpsFeel1.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+          <img class="newnps-img default" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnpsFeelGrey1.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+         </div> 
+         <div class="newnps-text">
+          非常没帮助
+         </div> </li> 
+        <li class="newnps-item" data-type="没帮助"> 
+         <div class="newnps-img-box"> 
+          <img class="newnps-img active" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnpsFeel2.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+          <img class="newnps-img default" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnpsFeelGrey2.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+         </div> 
+         <div class="newnps-text">
+          没帮助
+         </div> </li> 
+        <li class="newnps-item" data-type="一般"> 
+         <div class="newnps-img-box"> 
+          <img class="newnps-img active" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnpsFeel3.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+          <img class="newnps-img default" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnpsFeelGrey3.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+         </div> 
+         <div class="newnps-text">
+          一般
+         </div> </li> 
+        <li class="newnps-item" data-type="有帮助"> 
+         <div class="newnps-img-box"> 
+          <img class="newnps-img active" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnpsFeel4.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+          <img class="newnps-img default" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnpsFeelGrey4.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+         </div> 
+         <div class="newnps-text">
+          有帮助
+         </div> </li> 
+        <li class="newnps-item" data-type="非常有帮助"> 
+         <div class="newnps-img-box"> 
+          <img class="newnps-img active" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnpsFeel5.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+          <img class="newnps-img default" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnpsFeelGrey5.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+         </div> 
+         <div class="newnps-text">
+          非常有帮助
+         </div> </li> 
+       </ul> 
+       <div class="newnps-form-box"> 
+        <div class="newnps-form"> 
+         <input type="text" placeholder="请输入建议或反馈后点击提交" class="newnps-input"> 
+         <span class="newnps-btn">提交</span> 
+        </div> 
+       </div> 
+      </div> 
+     </div>     
+    </main>     
+   </div> 
+   <div class="recommend-right align-items-stretch clearfix" id="rightAside" data-type="recommend"> 
+    <aside class="recommend-right_aside"> 
+     <div id="recommend-right"> 
+      <div class="flex-column aside-box groupfile" id="groupfile"> 
+       <div class="groupfile-div"> 
+        <h3 class="aside-title">目录</h3> 
+        <div class="align-items-stretch group_item"> 
+         <div class="pos-box"> 
+          <div class="scroll-box"> 
+           <div class="toc-box"></div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+      <div class="aside-box kind_person d-flex flex-column"> 
+       <h3 class="aside-title">分类专栏</h3> 
+       <div class="align-items-stretch kindof_item" id="kind_person_column"> 
+        <div class="aside-content"> 
+         <ul> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9545648.html" data-report-click="{&quot;mod&quot;:&quot;popu_826&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4230&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9545648.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20200105231506733.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity Shader 及 屏幕特效 </span> <span class="pay-tag">付费</span> </a> <span class="special-column-num">33篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_12075730.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_12075730.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756926.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> C++ 基础入门/案例实践 </span> </a> <span class="special-column-num">11篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_11423352.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_11423352.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756919.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Web </span> </a> <span class="special-column-num">29篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_11744824.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_11744824.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2Fd7aa2fc25bce4be9a8989dfb2db36101.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> ThreeJS </span> </a> <span class="special-column-num">29篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_12031342.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_12031342.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756927.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> OpenGL </span> </a> <span class="special-column-num">1篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_11419037.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_11419037.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756754.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Vue </span> </a> <span class="special-column-num">17篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_11969852.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_11969852.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756919.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> vue 完全入门系列 </span> </a> <span class="special-column-num">1篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9701129.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9701129.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F2020020615215179.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> python </span> </a> <span class="special-column-num">66篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9516807.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9516807.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20191116192125889.jpg%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity 阿里云SDK </span> </a> <span class="special-column-num">4篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_11870287.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_11870287.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756930.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Flutter </span> </a> <span class="special-column-num">2篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9307604.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9307604.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756925.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity 面试题 </span> </a> <span class="special-column-num">9篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_11575162.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_11575162.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756927.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity 游戏实例开发集合 </span> </a> <span class="special-column-num">8篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_11487436.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_11487436.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756757.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Java </span> </a> <span class="special-column-num">1篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_11423355.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_11423355.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756780.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Spring </span> </a> <span class="special-column-num">2篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_11398268.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_11398268.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756923.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity Koreographer&nbsp; 音乐类游戏制作 </span> </a> <span class="special-column-num">2篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9470921.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9470921.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756928.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Android </span> </a> <span class="special-column-num">25篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9753534.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9753534.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756913.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity Android </span> </a> <span class="special-column-num">17篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9622453.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9622453.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756916.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity UGUI </span> </a> <span class="special-column-num">13篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9713695.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9713695.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756780.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> MySql </span> </a> <span class="special-column-num">5篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9357206.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9357206.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756918.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> 基础 </span> </a> <span class="special-column-num">47篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9611037.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9611037.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756754.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> AR/VR </span> </a> <span class="special-column-num">4篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9971879.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9971879.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756724.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> 实现财务自由 </span> </a> <span class="special-column-num">8篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_10310053.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_10310053.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756916.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> MVC </span> </a> <span class="special-column-num">2篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_10496125.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_10496125.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756925.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> UIWidgets </span> </a> <span class="special-column-num">2篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_10079110.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_10079110.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756926.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Android 常见错误 </span> </a> <span class="special-column-num">4篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_10051669.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_10051669.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756928.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity 网络 </span> </a> <span class="special-column-num">3篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9798744.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9798744.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756925.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity Lua </span> </a> <span class="special-column-num">6篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9785837.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9785837.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756754.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity 算法 </span> </a> <span class="special-column-num">1篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9650710.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9650710.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756926.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> 设计模式 </span> </a> <span class="special-column-num">1篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9294460.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9294460.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20190821155925815.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity 知识碎片整理 </span> </a> <span class="special-column-num">4篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_7283495.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_7283495.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756780.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity，AssetBundles </span> </a> <span class="special-column-num">16篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_7397786.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_7397786.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756918.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity </span> </a> <span class="special-column-num">189篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_7397789.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_7397789.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756928.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Particle System </span> </a> <span class="special-column-num">5篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_7417815.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_7417815.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756780.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> 实用工具 </span> </a> <span class="special-column-num">42篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_7461795.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_7461795.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756780.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity iOS </span> </a> <span class="special-column-num">6篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_7464243.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_7464243.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756927.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Git </span> </a> <span class="special-column-num">16篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_7898021.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_7898021.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756928.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity Android 交互 </span> </a> <span class="special-column-num">5篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_8502567.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_8502567.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756930.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity MLAgent </span> </a> <span class="special-column-num">3篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_8881737.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_8881737.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756754.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Opencv </span> </a> <span class="special-column-num">3篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9044202.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9044202.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756927.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity 碎片知识 </span> </a> <span class="special-column-num">3篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9080641.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9080641.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756928.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity 热更新 </span> </a> <span class="special-column-num">9篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9089460.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9089460.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756922.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> 其他 </span> </a> <span class="special-column-num">14篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9132565.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9132565.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756925.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> Unity 编辑器 </span> </a> <span class="special-column-num">6篇</span> </li> 
+          <li> <a class="clearfix special-column-name" target="_blank" href="https://blog.csdn.net/u014361280/category_9140885.html" data-report-click="{&quot;mod&quot;:&quot;popu_537&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4137&quot;,&quot;strategy&quot;:&quot;pc付费专栏左侧入口&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280/category_9140885.html&quot;,&quot;ab&quot;:&quot;new&quot;}"> 
+            <div class="special-column-bar "></div> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fimg-blog.csdnimg.cn%2F20201014180756925.png%3Fx-oss-process%3Dimage%2Fresize%2Cm_fixed%2Ch_64%2Cw_64&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt="" onerror="this.src='https://img-blog.csdnimg.cn/20201014180756922.png?x-oss-process=image/resize,m_fixed,h_64,w_64'"> 
+            <div class="img-mantle "></div> <span class=""> C++/C# 交互 </span> </a> <span class="special-column-num">2篇</span> </li> 
+         </ul> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </aside> 
+   </div> 
+   <div class="recommend-right1  align-items-stretch clearfix" id="rightAsideConcision" data-type="recommend"> 
+    <aside class="recommend-right_aside"> 
+     <div id="recommend-right-concision"> 
+      <div class="flex-column aside-box groupfile" id="groupfileConcision"> 
+       <div class="groupfile-div1"> 
+        <h3 class="aside-title">目录</h3> 
+        <div class="align-items-stretch group_item"> 
+         <div class="pos-box"> 
+          <div class="scroll-box"> 
+           <div class="toc-box"></div> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </aside> 
+   </div> 
+  </div> 
+  <div class="mask-dark"></div>  
+  <div class="skin-boxshadow"></div> 
+  <div class="directory-boxshadow"></div> 
+  <div class="comment-side-box-shadow comment-side-tit-close" id="commentSideBoxshadow"> 
+   <div class="comment-side-content"> 
+    <div class="comment-side-tit"> 
+     <span class="comment-side-tit-count">评论</span> 
+     <img class="comment-side-tit-close" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FcloseBt.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058">
+    </div>  
+    <div id="pcFlodCommentSideBox" class="pc-flodcomment-sidebox"> 
+     <div class="comment-fold-tit">
+      <span id="lookUnFlodComment" class="back"><img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FcommentArrowLeftBlack.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""></span>被折叠的&nbsp;
+      <span class="count"></span>&nbsp;条评论 
+      <a href="https://blogdev.blog.csdn.net/article/details/122245662" class="tip" target="_blank">为什么被折叠?</a> 
+      <a href="https://bbs.csdn.net/forums/FreeZone" class="park" target="_blank"> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FiconPark.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058">到【灌水乐园】发言</a> 
+     </div> 
+     <div class="comment-fold-content"></div> 
+     <div id="lookBadComment" class="look-bad-comment side-look-comment"> 
+      <a class="look-more-comment">查看更多评论<img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FcommentArrowDownBlack.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""></a> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <div id="rewardNew" class="reward-popupbox-new"> 
+   <p class="rewad-title">打赏作者<span class="reward-close"><img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FcloseBt.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058"></span></p> 
+   <dl class="profile-box"> 
+    <dd> 
+     <a href="https://blog.csdn.net/u014361280" data-report-click="{&quot;mod&quot;:&quot;popu_379&quot;,&quot;dest&quot;:&quot;https://blog.csdn.net/u014361280&quot;,&quot;ab&quot;:&quot;new&quot;}"> <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fprofile.csdnimg.cn%2F1%2FF%2FC%2F3_u014361280&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" class="avatar_pic"> </a> 
+    </dd> 
+    <dt> 
+     <p class="blog-name">仙魁XAN</p> 
+     <p class="blog-discript">你的鼓励将是我创作的最大动力</p> 
+    </dt> 
+   </dl> 
+   <div class="reward-box-new"> 
+    <div class="reward-content">
+     <div class="reward-right"></div>
+    </div> 
+   </div> 
+   <div class="money-box"> 
+    <span class="choose-money choosed" data-id="2">¥2</span> 
+    <span class="choose-money " data-id="4">¥4</span> 
+    <span class="choose-money " data-id="6">¥6</span> 
+    <span class="choose-money " data-id="10">¥10</span> 
+    <span class="choose-money " data-id="20">¥20</span> 
+    <input id="customizeMoney" class="customize-money" name="" type="" value="" placeholder="自定义"> 
+    <div class="customize-tip">
+     输入1-500的整数
+    </div> 
+   </div> 
+   <div class="pay-box"> 
+    <div class="pay-type-blance pay-type active" data-type="blance"> 
+     <img class="unchoose" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnewUnChoose.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+     <img class="choose" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnewChoose.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+     <span class="pay-type-name">余额支付</span> 
+     <span class="pay-type-num">(余额：-- )</span> 
+    </div> 
+    <div class="pay-type-money pay-type" data-type="money"> 
+     <img class="unchoose" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnewUnChoose.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+     <img class="choose" src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnewChoose.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+     <span class="pay-type-name">扫码支付</span> 
+    </div> 
+   </div> 
+   <div class="sure-box"> 
+    <div class="sure-box-money"> 
+     <div class="code-box"> 
+      <div class="code-num-box"> 
+       <span class="code-name">扫码支付：</span>
+       <span class="code-num">¥2</span> 
+      </div> 
+      <div class="code-img-box"> 
+       <div class="renovate"> 
+        <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2Fpay-time-out.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058"> 
+        <span>获取中</span> 
+       </div> 
+      </div> 
+      <div class="code-pay-box"> 
+       <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnewWeiXin.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+       <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2FnewZhiFuBao.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+       <span>扫码支付</span> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="sure-box-blance"> 
+     <p class="tip">您的余额不足，请更换扫码支付或<a target="_blank" data-report-click="{&quot;mod&quot;:&quot;1597646289_003&quot;,&quot;spm&quot;:&quot;1001.2101.3001.4302&quot;}" href="https://i.csdn.net/#/wallet/balance/recharge?utm_source=RewardVip" class="go-invest">充值</a></p> 
+     <p class="is-have-money"><a class="reward-sure">打赏作者</a></p> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="pay-code"> 
+   <div class="pay-money">
+    实付
+    <span class="pay-money-span" data-nowprice="" data-oldprice="">元</span>
+   </div> 
+   <div class="content-blance">
+    <a class="blance-bt" href="javascript:;">使用余额支付</a>
+   </div> 
+   <div class="content-code"> 
+    <div id="payCode" data-id=""> 
+     <div class="renovate"> 
+      <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2Fpay-time-out.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058"> 
+      <span>点击重新获取</span> 
+     </div> 
+    </div> 
+    <div class="pay-style">
+     <span><img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2Fweixin.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058"></span>
+     <span><img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2Fzhifubao.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058"></span>
+     <span><img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2Fjingdong.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058"></span>
+     <span class="text">扫码支付</span>
+    </div> 
+   </div> 
+   <div class="bt-close">
+    <svg t="1567152543821" class="icon" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10924" xmlns:xlink="http://www.w3.org/1999/xlink" width="12" height="12">
+     <defs>
+      <style type="text/css"></style>
+     </defs>
+     <path d="M512 438.378667L806.506667 143.893333a52.032 52.032 0 1 1 73.6 73.621334L585.621333 512l294.485334 294.485333a52.074667 52.074667 0 0 1-73.6 73.642667L512 585.621333 217.514667 880.128a52.053333 52.053333 0 1 1-73.621334-73.642667L438.378667 512 143.893333 217.514667a52.053333 52.053333 0 1 1 73.621334-73.621334L512 438.378667z" fill="" p-id="10925"></path>
+    </svg>
+   </div> 
+   <!-- <p style="margin-top: 8px;font-size: 14px;" class="text-center">支付成功即可阅读</p> --> 
+   <div class="pay-balance"> 
+    <input type="radio" class="pay-code-radio" data-type="details"> 
+    <span class="span">钱包余额</span> 
+    <span class="balance" style="color:#FC5531;font-size:14px;">0</span> 
+    <div class="pay-code-tile"> 
+     <img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2Fpay-help.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""> 
+     <div class="pay-code-content"> 
+      <div class="span"> 
+       <p class="title">抵扣说明：</p> 
+       <p> 1.余额是钱包充值的虚拟货币，按照1:1的比例进行支付金额的抵扣。<br> 2.余额无法直接购买下载，可以购买VIP、C币套餐、付费专栏及课程。</p> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <a class="pay-balance-con" href="https://i.csdn.net/#/wallet/balance/recharge" target="_blank"><img src="https://pucsdn.com//main/csdn/img?url=https%3A%2F%2Fcsdnimg.cn%2Frelease%2Fblogv2%2Fdist%2Fpc%2Fimg%2Frecharge.png&amp;rfUrl=https%3A%2F%2Fblog.csdn.net%2Fu014361280%2Farticle%2Fdetails%2F115522058" alt=""><span>余额充值</span></a> 
+  </div> 
+  <div style="display:none;">  
+  </div> 
+  <div class="keyword-dec-box" id="keywordDecBox"></div>  
+  <!-- 富文本柱状图  --> 
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/chart/chart.css">      
+  <link rel="stylesheet" href="https://csdnimg.cn/release/blog_editor_html/release1.6.12/ckeditor/plugins/codesnippet/lib/highlight/styles/tomorrow-night.css">                  
+ </body>
+</html>
